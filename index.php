@@ -10,8 +10,10 @@
 
 
 
-function enqueue_my_styles(){
-   wp_enqueue_style('dt-archive-grid-layout', plugin_dir_url( __FILE__ ) . 'css/dt-archive.css' );
+function enqueue_dt_archive_grid_layout_styles(){
+	if (is_archive() || is_search()) {
+		wp_enqueue_style('dt-archive-grid-layout', plugin_dir_url( __FILE__ ) . 'css/dt-archive.css' );
+	}
 }
 
-add_action('get_footer','enqueue_my_styles', 9999);
+add_action('get_footer','enqueue_dt_archive_grid_layout_styles', 9999);
