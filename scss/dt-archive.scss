@@ -1,0 +1,71 @@
+/* Remove sidebar on all archive pages */
+.search, 
+.archive {
+	#main-content {
+		.container {
+			&::before {
+				display: none;
+			}
+		}
+	}
+	#left-area {
+		width: 100%;
+		float: none;
+		padding-right: 0;
+	}
+	#sidebar {
+		display: none;
+	}
+}
+
+@media (min-width: 981px) {
+	:root {
+		--columns: 3;
+		--columns-gap: 5.5%;
+		--inset-space: 16px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 980px) {
+	:root {
+		--columns: 2;
+		--columns-gap: 5.5%;
+		--inset-space: 16px;
+	}
+}
+
+@media (max-width: 480px) and (min-width: 767px) {
+	:root {
+		--columns: 1;
+		--columns-gap: 0;
+		--inset-space: 16px;
+	}
+}
+.archive,
+.search {
+	#left-area {
+		display: grid;
+		grid-template-columns: repeat(var(--columns), calc((100% - ((var(--columns) - 1) * var(--columns-gap))) / var(--columns)));
+		column-gap: var(--columns-gap);
+
+		article {
+			border: 1px solid #E2E2E2;
+			padding: var(--inset-space);
+
+			.entry-featured-image-url,
+			.et_link_content,
+			.et_pb_slider,
+			.et_quote_content,
+			.et_audio_content,
+			.et_main_video_container {
+				margin-left: calc(-1 * var(--inset-space));
+				margin-right: calc(-1 * var(--inset-space));
+				margin-top: calc(-1 * var(--inset-space));
+			}
+
+		}
+		.pagination {
+			grid-column: span var(--columns);
+		}
+	}
+}

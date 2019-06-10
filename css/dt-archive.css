@@ -1,0 +1,77 @@
+/* Remove sidebar on all archive pages */
+.search #main-content .container::before,
+.archive #main-content .container::before {
+  display: none;
+}
+
+.search #left-area,
+.archive #left-area {
+  width: 100%;
+  float: none;
+  padding-right: 0;
+}
+
+.search #sidebar,
+.archive #sidebar {
+  display: none;
+}
+
+@media (min-width: 981px) {
+  :root {
+    --columns: 3;
+    --columns-gap: 5.5%;
+    --inset-space: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 980px) {
+  :root {
+    --columns: 2;
+    --columns-gap: 5.5%;
+    --inset-space: 16px;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 767px) {
+  :root {
+    --columns: 1;
+    --columns-gap: 0;
+    --inset-space: 16px;
+  }
+}
+
+.archive #left-area,
+.search #left-area {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), calc((100% - ((var(--columns) - 1) * var(--columns-gap))) / var(--columns)));
+  -webkit-column-gap: var(--columns-gap);
+          column-gap: var(--columns-gap);
+}
+
+.archive #left-area article,
+.search #left-area article {
+  border: 1px solid #E2E2E2;
+  padding: var(--inset-space);
+}
+
+.archive #left-area article .entry-featured-image-url,
+.archive #left-area article .et_link_content,
+.archive #left-area article .et_pb_slider,
+.archive #left-area article .et_quote_content,
+.archive #left-area article .et_audio_content,
+.archive #left-area article .et_main_video_container,
+.search #left-area article .entry-featured-image-url,
+.search #left-area article .et_link_content,
+.search #left-area article .et_pb_slider,
+.search #left-area article .et_quote_content,
+.search #left-area article .et_audio_content,
+.search #left-area article .et_main_video_container {
+  margin-left: calc(-1 * var(--inset-space));
+  margin-right: calc(-1 * var(--inset-space));
+  margin-top: calc(-1 * var(--inset-space));
+}
+
+.archive #left-area .pagination,
+.search #left-area .pagination {
+  grid-column: span var(--columns);
+}
